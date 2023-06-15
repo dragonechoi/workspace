@@ -1,0 +1,57 @@
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+public class ClientTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//클라이언트는 서버의 IP주소, port번호를 알아야 접속할 수 있음.
+		
+		String serverIp="172.30.1.96";
+		serverIp="127.0.0.1";//본인 PC를말하는 특별한 IP
+		serverIp="localhost";//본인 PC의 컴퓨터 식별자(일종의 도메인)
+		//클라이언트용 작업
+		
+		try {
+			//1)서버와 연결하는 Socket생성(Ip주소 , port번호)
+			Socket socket=new Socket(serverIp,5900);
+			System.out.println("서버와 연결이 되었습니다.");
+			
+			//2)데티어를 전달하기 위한 무지개로드 만들기
+			//데이터를 내보내는 스트림
+			OutputStream os=socket.getOutputStream();
+			//보조문자 스트림을 사용하면 write작업을 보다 수월하게 할수 있음.
+			PrintWriter writer=new PrintWriter(os);
+			System.out.println("스트림 연결 작업 성공!!..데이터 전송 가능");
+			
+			//보낼 데이터를 키보드로 입력받기
+			Scanner scan=new Scanner(System.in);
+			
+			//스트림을 통해 데이터를 전송
+			while(true) {
+			System.out.print("보낼 메세지를 입력하세요 : ");	    
+			String msg=scan.nextLine();
+			if(msg.equalsIgnoreCase("quit"))break;
+			
+			writer.println(msg);
+			writer.flush();
+			}
+			//스트림 닫기
+			writer.close();
+			
+			System.out.println("서버와 통신 종료");
+		
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			
+		}
+
+	}
+
+}

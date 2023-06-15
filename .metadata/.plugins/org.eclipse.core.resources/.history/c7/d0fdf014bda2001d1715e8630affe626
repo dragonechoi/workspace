@@ -1,0 +1,29 @@
+
+public class JoinTest {
+
+	public static void main(String[]args) {
+		JThread j=new JThread();
+		j.start();//5초정도 소요되는 작업 시작
+		
+		//main Thread가 다른작업 수행
+		for(int i=0 ;i<10;i++) {
+			System.out.println("main..");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {}
+		}
+	}
+}
+
+class JThread extends Thread{
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<10;i++) {
+			System.out.println("aaa");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {}
+		}
+	}
+}

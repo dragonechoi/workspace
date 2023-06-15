@@ -1,0 +1,38 @@
+
+public class Main2 {
+	
+	public static void main(String[]args) {
+		
+		
+		//Throws :예외를 떠넘기기.. 문법
+	
+		try {
+			int num=divide(10,0);
+			System.out.println("num : "+num);
+			
+		}catch(ArithmeticException e) {
+			System.out.println("divide 메소드의 throws 된 예외를 대신처리");
+		}
+		
+	}
+    
+	//두 수를 나눗셈 연산하여 결과를 리턴해주는 기능 메소드
+	//경우에 따라서는 예외가 발생하는 코드에서 직접 처리가 애매할 수 있음.
+	//이럴때 이곳에서 예외를 처리하지않고 이 메소드를 호출하는 쪽으로
+	//예외를 던져버리는 문법 :Throws [일종의 폭탄 돌리기]
+	static int divide(int x,int y)throws ArithmeticException {
+           return x/y;
+		
+//		try {
+//			return x/y;
+//		}catch(ArithmeticException e) {
+//			
+//		}
+		
+	}
+	
+	
+	
+	
+	
+}

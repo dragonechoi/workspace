@@ -1,0 +1,23 @@
+import javax.swing.JFrame;
+
+public class ButtonEvernTest extends JFrame {
+
+	public ButtonEvernTest() {
+		setSize(400,450);
+		setTitle("버튼 클릭 이벤트 시작");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocation(800,50);
+		
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		new ButtonEvernTest();
+			
+		
+
+	}
+
+}

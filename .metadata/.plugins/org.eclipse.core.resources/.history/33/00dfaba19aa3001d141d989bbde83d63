@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("주민번호체크프로그램");
+        System.out.println("주민등록번호를 입력해주세요");
+        String inputSsn = scn.next();   
+        
+        int[] checkNum = {2,3,4,5,6,7,8,9,2,3,4,5};
+        
+        String ssn = inputSsn.replace("-", "").trim();
+       
+        int sum = 0;
+        for (int i = 0; i < checkNum.length; i++) {
+            
+            int tmp =(ssn.charAt(i)-48) * checkNum[i]; 
+            sum += tmp; 
+        }
+        
+        
+        int pin = 11 - (sum%11);        
+        
+       
+        if( pin >= 10 ) pin = pin-10;        
+       
+        
+        if((ssn.charAt(12)-48)==pin){ 
+            System.out.println("\""+inputSsn+"\" 는 유효한 주민번호입니다.");
+        }else{
+            System.out.println("\""+inputSsn+"\" 는 틀린 주민번호입니다.");
+        }
+        
+    }
+}
+
+

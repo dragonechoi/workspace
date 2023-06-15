@@ -1,0 +1,41 @@
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class ButtonEvernTest extends JFrame {
+
+	public ButtonEvernTest() {
+		setSize(400,450);
+		setTitle("버튼 클릭 이벤트 시작");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocation(800,50);
+		
+		//간단하게 옆으로 배치되도록. 배치관리자 변경
+		setLayout(new FlowLayout());
+		
+		// 버튼을 클릭하여 Label의 글씨를 변경해보기
+		
+		//Button , Label 컴포넌트 하나씩 배치
+		JButton btn=new JButton("Button");
+		JLabel label=new JLabel("Hello world");
+		
+		//프레임에 붙히기
+		
+		add(btn);
+		add(label);
+		
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		new ButtonEvernTest();
+			
+		
+
+	}
+
+}

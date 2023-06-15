@@ -1,0 +1,57 @@
+
+public class ControlThread {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//타이어조립하는 직원 객체 생성[직원 채용]
+		CThread t=new CThread();
+		t.start();
+		
+       //스레드는 1회용 이기에 run()가 종료되면 더이상 실행불가
+//		t=new CThread();
+//		t.start();//error
+		
+		//3초후에 작업을 종료[즉, 퇴근시키기]
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {}
+		//스레드를 종료!
+		//t.stop();//기능은 있으나 사용을 권장 하지 않음.
+		
+		//while문을 종료하면 결국run메소드가 종료되므로
+		//정상적으로 멈출 수 있음.
+		//while 문의 조건을 거짓으로 변경
+		//t.isRun=false; //가장 안전하게 쓰레드를 제어하는 방법 이지만 권강하지 않음
+		//객체지향의 목적에 맞게 isRun을 false로
+		//변경하는 메소드를 정의하여 사용하는 방식을 권장
+	}
+
+}
+
+//타이어조립 작업을하는 스레드 설계
+class CThread extends Thread{
+	boolean isRun=true;
+	
+	@Override
+	public void run() {
+		//4개의 타이어를 조립
+		
+		while(isRun) {
+			System.out.println("1번 타이어 조립");
+			System.out.println("2번 타이어 조립");
+			System.out.println("3번 타이어 조립");
+			System.out.println("4번 타이어 조립");
+			System.out.println();
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {}
+		}
+		
+		
+		
+		System.out.println("퇴근");
+		System.out.println();
+	}//run method...
+}

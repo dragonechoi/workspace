@@ -1,0 +1,111 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main (String[]args) {
+		
+		
+		//1. Error(오류)       :실행불가!
+		//2. Exception(제외)   :실행중(Run Time) 문제 발생![앱사용중에 다운되는 상황]
+		
+		//Exception 의 대표적인 예
+		//1) 사용자가 잘못된 데이터를 입력하는 경우 : 숫자입력상황에 문자입력..등
+		//2) 개발 로직이나 계산을 잘못한 경우 : 배열의 인덱스번호 오류,or 0으로 나눗셈
+		//3) 네트워크나 하드웨어 오류 : 하드디스크의 파일제어 오류..특정사이트(서버)접속 오류(URL 미스,서버 불량)
+		
+		//예외처리에 대한 실습 - 예외는 발생하지만 앱이 다운되지 안도록 하는 문법
+		System.out.println("에외처리에 대해 알아봅시다.");
+		
+		//예외상황 ..
+		//System.out.println(10/0);//이 곳에서 예외가 발생하며 이순간 프로그램이 다운되버림 즉,아래코드들이 실행되지 않음.
+		//예외처리는 이런앱이 실행중에 멈춰버리는 문제가 발생하지
+		//않도록..그래서.. 아래 코드들이 정상적으로 실행되도록 하는 기법
+		//즉 ,예외가 없도록 하는것이 아니라 예외가 발생해도 다운되지 않도록 하는 기법
+		// if문법으로 예외상황을 방지하는 것도 방법이지만 .. 모든 상황을 대처하지 못함
+		//또한,경우에 따라서 일단 실행해봐야 예외인지아닌지를 파악 할수 있는 경우도 있음.[예)네트워크 접속]
+		
+		///이럴떄 사용하는 문법 - 예외저리!!
+		//1) 0 으로 나눗셈
+		int a=0;
+		try {
+		
+		System.out.println(10/a);//예외 발생 가능성이있는 코드
+		
+		} catch(ArithmeticException e) {
+			//예외가 발생할때 실행되는 영역
+			System.out.println("예외가 발생했어요!");
+			System.out.println("예외 메세지 :  "+e.getMessage());
+			System.out.println("예외 풀 메세지 : "+e.toString());
+		}
+		
+		//즉 예외처리 [try-catch]는 앱이 다운되지 않도록 하는 기법
+		
+		//2) 배열의 인덱스 번호 사용오류
+		
+		int []aaa=new int [5];
+		
+		try {
+			for(int i=0;i<6;i++) {
+				System.out.println(aaa[i]);
+			}
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("배열 번호 틀렸고 !!");
+		}
+		//3) null참조변수로 객체의 메소드를 사용 [가장 빈번]		
+		String s=null;
+		
+		try {
+			System.out.println(s.length() );
+		}catch(NullPointerException e) {
+			System.out.println("객체가 없음 ");
+		}
+		//4 잘못된 데이터 입력!
+		Scanner scan=new Scanner(System.in);
+		int n;
+		
+		try {
+			
+			
+			
+//			a=scan.nextInt();
+//			System.out.println("n : "+ n);
+			
+		}catch(InputMismatchException e) {
+			System.out.println("정수만 입력해");
+		}
+		
+		//숫자로 바꿀 수 없는 데이터를 숫자로 바꾸려 할떄
+//		String ss=scan.next();//문자열
+		
+		//문자열을 int형으로 변환
+		try {
+//			int num=Integer.parseInt(ss);
+//			System.out.println("num : "+num);
+		}catch(NumberFormatException e) {
+			System.out.println("숫자모양이 아니구만");
+		}
+		
+		//즉 ,예외처리는 예외가 발생해도 프로그램이 종료되지 않도록 하는 기술
+		
+		//예외가 여러가지 발생하는 경우도 있음.
+		//에) 두 수를 입력 받아 나눗셈을 하는 프로그램
+		
+		int c,d;
+		
+		
+		try {
+			c=scan.nextInt();
+			d=scan.nextInt();
+			
+			System.out.println(c/d);
+			
+		}catch(InputMismatchException e) {
+			System.out.println("숫자만 입력 가능");
+		}
+	
+		
+		
+		System.out.println("\n프로그램 종료\n");
+	}
+}

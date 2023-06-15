@@ -1,0 +1,21 @@
+
+public class SleepTest {
+	public static void main(String[]args) {
+		
+	}
+
+}
+class SThread extends Thread{
+	@Override
+	public void run() {
+		//10초 대기 후 "Hello" 글씨 출력
+		try {
+			Thread.sleep(10000);
+			
+		} catch (InterruptedException e) {
+			System.out.println("자는데 왜 깨워!!!");
+		}
+		
+		System.out.println("Hello");
+	}
+}

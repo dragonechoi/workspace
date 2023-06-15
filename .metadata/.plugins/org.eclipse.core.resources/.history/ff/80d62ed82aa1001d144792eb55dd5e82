@@ -1,0 +1,19 @@
+
+public class Main3 {
+
+	public static void main(String[]args) {
+		
+		//throw : 코드를 통해 강제로 예외를 발생시키는 문법
+		
+		try {
+			System.out.println("aaa");
+			//억지로 예외발생 - 억지로 catch문으로 이동시키기
+			throw new Exception();
+			
+			//System.out.println("bbb");
+			
+		}catch(Exception e) {
+			System.out.println("예외발생");
+		}
+	}
+}

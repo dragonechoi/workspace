@@ -1,0 +1,31 @@
+
+public class ControlThread {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//타이어조립하는 직원 객체 생성[직원 채용]
+		CThread t=new CThread();
+		t.start();
+		
+       //스레드는 1회용 이기에 run()가 종료되면 더이상 실행불가
+		t=new CThread();
+		t.start();
+		
+	}
+
+}
+
+//타이어조립 작업을하는 스레드 설계
+class CThread extends Thread{
+	@Override
+	public void run() {
+		//4개의 타이어를 조립
+		System.out.println("1번 타이어 조립");
+		System.out.println("2번 타이어 조립");
+		System.out.println("3번 타이어 조립");
+		System.out.println("4번 타이어 조립");
+		
+		System.out.println("퇴근");
+	}//run method...
+}

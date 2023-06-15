@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("주민번호체크프로그램");
+        System.out.println("주민등록번호를 입력해주세요");
+        String inputSsn = scn.next();   
+        
+        int[] checkNum = {2,3,4,5,6,7,8,9,2,3,4,5};
+        
+        String ssn = inputSsn.replace("-", "").trim();
+        //System.out.println(ssn);
+        //System.out.println((int)'0');   //0 은 아스키 코드 48
+        int sum = 0;
+        for (int i = 0; i < checkNum.length; i++) {
+            
+            int tmp =(ssn.charAt(i)-48) * checkNum[i]; //주민번호 각자리수를 checkum배열의 각자리수와 곱 
+            sum += tmp; //곱한 결과를 sum변수에 누적
+        }
+        //System.out.println(sum); 
+        //System.out.println(sum/11);
+        //int nmg = sum%11; 
+        //System.out.println(nmg);
+        //if(nmg==0) nmg = nmg +10;
+        
+        int pin = 11 - (sum%11);        
+        
+        //계산값이 2자리가 되었을 경우에는
+        //10을 나눈 나머지 값 혹은 10을 빼주면 마지막 자리의 숫자만 남는다.
+        if( pin >= 10 ) pin = pin-10;        
+        //int pin = (11 - (sum%11))%10; 위 if문을 대신할수있다.
+        
+        if((ssn.charAt(12)-48)==pin){ //주민등록번호 마지막 번호와 계산 값이 같은지 검사
+            System.out.println("\""+inputSsn+"\" 는 유효한 주민번호입니다.");
+        }else{
+            System.out.println("\""+inputSsn+"\" 는 틀린 주민번호입니다.");
+        }//if   
+        
+    }
+}
+
+
